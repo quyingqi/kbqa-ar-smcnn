@@ -7,12 +7,28 @@ This is the source code for Question Answering over Freebase via Attentive RNN w
 - NLTK
 - NLTK data (tokenizers, stopwords list)
 - Virtuoso
+
 After install Virtuoso, you should modify config file at freebase_data/dump_virtuoso_data/virtuoso.ini
 1. Add the absolute path of freebase_data/dump_virtuoso_data/ to DirsAllowed.
 2. Choose a proper
 
 ## Set up
 Run the setup script. This takes a long time. It fetches datasets and preprocesses.
-'''sh data_setup.sh'''
+```
+sh data_setup.sh
+```
 
-
+## Training
+- entity detection model
+```
+cd entity_detection
+sh process.py
+python predict.py --trained_model XXX --results_path results  --save_qadata
+```
+- relation detection model
+```
+cd relation_ranking
+python seqRankingLoader.py --batch_size 64 --neg_size 50
+sh process.py
+python predict.py --trained_model XXX --predict --results_path results
+```
