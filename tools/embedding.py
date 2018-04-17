@@ -6,7 +6,6 @@ import torch
 import torch.nn as nn
 from utils import load_word2vec_format, aeq
 
-
 class Embeddings(nn.Module):
 
     def __init__(self,
@@ -123,7 +122,6 @@ class Embeddings(nn.Module):
             return emb
 
         in_batch, in_length, nfeat = inp.size()
-        # 特征数量应与Embedding个数相同
         aeq(nfeat, len(self.emb_luts))
 
         if len(self.emb_luts) == 1:
