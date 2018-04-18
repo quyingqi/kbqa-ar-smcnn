@@ -21,10 +21,6 @@ mv FB2M.core.txt dump_virtuoso_data/
 
 # 3. load data into knowledge base
 echo "\n\nload data into knowledge base...\n"
-virtuoso-t +foreground +configfile /dump_virtuoso_data/virtuoso.ini & # start the server
-serverPID=$!
-sleep 10
-
 isql-vt 1111 dba dba exec="ld_dir_all('`pwd`/dump_virtuoso_data', '*', 'fb2m:');"
 pids=()
 for i in `seq 1 4`; do
@@ -55,6 +51,7 @@ echo "create vocabs...\n"
 python create_vocab.py
 
 # 6. create training data
+echo "\n\nCreating training data for entity detection...\n"
 cd ../entity_detection
 python seqLabelingLoader.py
 

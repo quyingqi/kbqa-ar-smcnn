@@ -35,7 +35,6 @@ def create_seq_labeling_data(batch_size, qa_data, word_vocab, NoneLabel=0, TrueL
             batch_index += 1
             seqs.append(torch.LongTensor(len(tokens), batch_size).fill_(pad_index))
             seq_labels.append(torch.LongTensor(len(tokens), batch_size).fill_(NoneLabel))
-            print('batch: %d' %batch_index)
 
         seqs[batch_index][0:len(tokens),seq_index] = torch.LongTensor(word_vocab.convert_to_index(tokens))
         seq_labels[batch_index][labels[0]:labels[-1]+1, seq_index] = TrueLabel
