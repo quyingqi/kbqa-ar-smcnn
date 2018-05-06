@@ -29,13 +29,13 @@ sh data_setup.sh
 - entity detection model
 ```
 cd entity_detection
-sh process.py
+sh process.sh
 python predict.py --trained_model XXX --results_path results  --save_qadata
 ```
 - relation detection model
 ```
 cd relation_ranking
 python seqRankingLoader.py --batch_size 64 --neg_size 50  #Create training data for relation detection
-sh process.py
+sh process.sh
 python predict.py --trained_model XXX --results_path results --predict
 ```
